@@ -133,7 +133,7 @@ class TestResPartnerIndustryEUNaceWizard(TransactionCase):
         records_created_name_fr = records_created.with_context(lang="fr_FR").mapped(
             "name"
         )
-        nace_fr_names = list(map(lambda item: item.get("FR").get("value"), NACE_FR))
+        nace_fr_names = [item.get("FR").get("value") for item in NACE_FR]
         self.assertCountEqual(records_created_name_fr, nace_fr_names)
 
     @patch(MOCK_PATH, return_value=create_response(NACE_COMMON, NACE_EN, NACE_ES))
